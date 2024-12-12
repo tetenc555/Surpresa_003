@@ -54,4 +54,8 @@ public class Funcionario {
         }
         this.totalDescontos = totalDescontos;
     }
+
+    public float calculaSalarioLiquido() {
+        return (this.getSalarioBruto()+this.getTotalAcrescimos()-this.getTotalDescontos())
+    }
 }
