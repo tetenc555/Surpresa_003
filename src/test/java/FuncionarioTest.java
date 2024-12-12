@@ -72,4 +72,22 @@ class FuncionarioTest {
         f.setTotalDescontos(0F);
         assertEquals(0F, f.getTotalDescontos());
     }
+
+    @Test
+    void naoDeveCalcularLiquidoInvalido(){
+        try{
+            Funcionario f = new Funcionario("Rebecca",1_412.0F,0F,1_413.0F);
+            f.calculaSalarioLiquido();
+            fail();
+        }
+        catch(IllegalArgumentException e){
+            assertEquals("Total de descontos nao pode sobrepassar ao recebido.", e.getMessage());
+        }
+    }
+
+    @Test
+    void deveCalcularLiquidoVALIDO(){
+        Funcionario f = new Funcionario("Rebecca",1_412.0F,0F,1_411.0F);
+        assertEquals(f.calculaSalarioLiquido(),1.0F);
+    }
 }
