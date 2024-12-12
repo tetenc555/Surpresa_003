@@ -56,6 +56,9 @@ public class Funcionario {
     }
 
     public float calculaSalarioLiquido() {
-        return (this.getSalarioBruto()+this.getTotalAcrescimos()-this.getTotalDescontos())
+        if (totalDescontos > (this.getSalarioBruto()+this.getTotalAcrescimos())) {
+            throw new IllegalArgumentException("Total de descontos nao pode sobrepassar ao recebido.");
+        }
+        return (this.getSalarioBruto()+this.getTotalAcrescimos()-this.getTotalDescontos());
     }
 }
